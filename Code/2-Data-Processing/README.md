@@ -3,5 +3,6 @@
 Last Edited: March 31, 2020
 
 - These scripts should be run after the data construction scripts
-- These scripts should be run locally. The `Data-Processor` script usually takes a while to run.
-- The `Data-Processor` script has a `build_flag` index that indicates whether to process the 5k sample, 20k sample, 100k sample, or the whole data set.
+- The `Data-Processor` script usually takes a while to run
+- The scripts have a `build_flag` index that indicates whether to process and to aggregate a 5k sample, 20k sample, 100k sample, or the whole data set
+- For the larger data samples a high memory machine should be used for the aggregation step

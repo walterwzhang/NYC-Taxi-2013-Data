@@ -43,7 +43,7 @@ for start_value in range(0, 1):
 		f3.write('#SBATCH --output=' + job_name + str(i) + '_sbatch.out\n')
 		f3.write('#SBATCH --error=' + job_name + str(i) + '_sbatch.err\n')
 		f3.write('#SBATCH --time=00:35:00\n')
-		f3.write('#SBATCH --partition=<...partition_name...>\n') # @NOTE: Change here
+		f3.write('#SBATCH --partition=<...partition_name...>\n') # @NOTE: Specify your partition here
 		f3.write('#SBATCH --nodes=1\n')
 		f3.write('#SBATCH --cpus-per-task=6\n')
 		f3.write('#SBATCH --mem=51000\n')

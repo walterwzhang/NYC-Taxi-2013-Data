@@ -1,8 +1,10 @@
-# NYC Taxi 2013 README
+# NYC Taxi 2013 Data README
 
-Authors: Walter W. Zhang and Øystein Daljord
+**Authors**: Walter W. Zhang and Øystein Daljord
 
-Last Edited: April 1, 2020
+**Last Edited**: April 2, 2020
+
+**Data Location**: [https://public-data.chicagobooth.edu/oeystein-daljord/NYC-2013-Taxi-Data-Balanced/](https://public-data.chicagobooth.edu/oeystein-daljord/NYC-2013-Taxi-Data-Balanced/)
 
 This repository contains scripts that construct, process, and aggregate the 2013 NYC Taxi Data.
 
@@ -67,6 +69,6 @@ Before aggregation, all the observations with the following properties are dropp
 
 ## Data construction and processing
 
-Scripts should be run in sequence by their numerical prefix. The first folder of scripts constructs the data from the raw data. The second folder of scripts processes the constructed data to the desired format. The first set of scripts should be run on a SLURM job scheduler and the second set of scripts should be run on a local machine. File paths should be set accordingly before a re-build of the data and the ellipsis in the scripts' file paths should be changed to reflect your computing environment. 
+Scripts should be run in sequence by their numerical prefix. The first folder of scripts constructs the data from the raw data. The second folder of scripts processes the constructed data to the desired format. The first set of scripts should be run on a SLURM job scheduler and the second set of scripts should be run on a local machine. File paths should be set accordingly before a re-build of the data and the ellipsis in the scripts' file paths should be changed to reflect your computing environment.
 
 A HPC cluster is suggested for constructing the data construction step since it is an embarrassing parallel workload. A high memory machine (~250 GB RAM) is recommended for processing and aggregating the constructed data to create the final data samples.
