@@ -22,22 +22,6 @@ day_ind     <-   day(base_date + i)
 
 num_cores <- 6L
 
-# Function to match the location of the last drop off to the street score data base
-#  - Returns a list of the q-score and the distance of the street score data point to the
-#    drop off location
-streetscore_matcher <- function(test_location_DT, thread_count = 1L)
-{
-    # street_DT is pre-defined
-    street_mat <- as.matrix(street_DT[, .(longitude, latitude)])
-    test_mat   <- as.matrix(test_location_DT)
-    knn_mat    <- knn.index.dist(street_mat, test_mat, k = 1,
-                                 method = "euclidean", threads = thread_count)
-    knn_index  <- knn_mat$test_knn_idx
-    knn_dist   <- knn_mat$test_knn_dist
-    return(list(street_DT[knn_index, get("q-score")],
-                knn_dist))
-}
-
 year_ind <- 2013L
 save_folder <- "...save_folder..."
 save_month_date_folder <- paste0("Month-", month_ind, "/Day-", day_ind, "/")
@@ -50,7 +34,6 @@ fare_data_location   <-   "...fare_data_location..."
 fare_data_files      <-   grep(".*csv$", dir(fare_data_location), perl = TRUE, value = TRUE)
 trip_data_location   <-   "..._trip_data_location..."
 trip_data_files      <-   grep(".*csv$", dir(trip_data_location), perl = TRUE, value = TRUE)
-
 
 # Load the Street Score csv file
 street_DT <- fread("...street_score_location...")
@@ -69,6 +52,23 @@ trip_data_file <- grep(paste0(".*_", month_ind, ".csv$"),
 # Read in the data
 fare_DT <- fread(paste0(fare_data_location, fare_data_file), showProgress = FALSE)
 trip_DT <- fread(paste0(trip_data_location, trip_data_file), showProgress = FALSE)
+
+
+# Function to match the location of the last drop off to the street score data base
+#  - Returns a list of the q-score and the distance of the street score data point to the
+#    drop off location
+streetscore_matcher <- function(test_location_DT, thread_count = 1L)
+{
+    # street_DT is pre-defined
+    street_mat <- as.matrix(street_DT[, .(longitude, latitude)])
+    test_mat   <- as.matrix(test_location_DT)
+    knn_mat    <- knn.index.dist(street_mat, test_mat, k = 1,
+                                 method = "euclidean", threads = thread_count)
+    knn_index  <- knn_mat$test_knn_idx
+    knn_dist   <- knn_mat$test_knn_dist
+    return(list(street_DT[knn_index, get("q-score")],
+                knn_dist))
+}
 
 
 # Convert Dates to Date-time

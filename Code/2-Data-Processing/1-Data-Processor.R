@@ -1,5 +1,5 @@
 # Given the constructed Taxi Data, makes the processed data set
-
+# Log file tracks the processing progress
 
 # Load the packages
 require(data.table)
